@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Portfolio - Ilya</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -132,12 +132,121 @@
         .animate-fadein {
             animation: fadeIn 0.6s ease-out forwards;
         }
+
+        /* Mobile Styles */
+        @media (max-width: 767px) {
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .skill-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+            }
+            
+            .skill-card {
+                padding: 1rem !important;
+            }
+            
+            .skill-circle {
+                width: 80px !important;
+                height: 80px !important;
+            }
+            
+            .skill-circle::before {
+                width: 50px !important;
+                height: 50px !important;
+            }
+            
+            .timeline-item {
+                padding-left: 20px;
+            }
+            
+            .nav-mobile {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transform: translateY(-100%);
+                z-index: 40;
+                transition: transform 0.3s ease-in-out;
+                background-color: rgba(22, 32, 48, 0.98);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .nav-mobile ul {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-mobile li a {
+                font-size: 1.2rem;
+                padding: 15px 0;
+                display: block;
+            }
+            
+            .mobile-menu-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 1.5rem;
+                color: white;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .contact-info {
+                margin-top: 2rem;
+            }
+            
+            .social-media {
+                justify-content: center !important;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-navy-dark text-white font-sans">
     <!-- Header -->
     <header class="fixed top-0 w-full bg-navy-darker z-50 border-b border-white">
-        <nav class="container mx-auto px-6 py-4">
+        <nav class="container mx-auto px-4 md:px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold text-white flex items-center">
@@ -159,37 +268,38 @@
             </div>
                     
             <!-- Mobile Navigation -->
-            <div class="nav-mobile md:hidden absolute top-full left-0 right-0 bg-navy-darker shadow-lg border-t border-white">
-                <ul class="py-2">
-                    <li><a href="#home" class="block py-3 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium">Beranda</a></li>
-                    <li><a href="#about" class="block py-3 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium">Tentang</a></li>
-                    <li><a href="#portfolio" class="block py-3 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium">Portfolio</a></li>
-                    <li><a href="#contact" class="block py-3 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium">Kontak</a></li>
+            <div class="nav-mobile md:hidden fixed top-0 left-0 right-0 bottom-0 bg-navy-darker shadow-lg">
+                <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
+                <ul class="py-2 w-full">
+                    <li><a href="#home" class="block py-4 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium text-lg" onclick="toggleMobileMenu()">Beranda</a></li>
+                    <li><a href="#about" class="block py-4 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium text-lg" onclick="toggleMobileMenu()">Tentang</a></li>
+                    <li><a href="#portfolio" class="block py-4 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium text-lg" onclick="toggleMobileMenu()">Portfolio</a></li>
+                    <li><a href="#contact" class="block py-4 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium text-lg" onclick="toggleMobileMenu()">Kontak</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <main class="pt-20">
+    <main class="pt-16 md:pt-20">
         <!-- Hero Section -->
-        <section id="home" class="bg-navy-dark py-20">
-            <div class="container mx-auto px-6 text-center">
+        <section id="home" class="bg-navy-dark py-12 md:py-20">
+            <div class="container mx-auto px-4 md:px-6 text-center">
                 <!-- Profile Image -->
-                <img src="img/saya.jpg" alt="Profile Photo" class="profile-image mx-auto mb-8 animate-fadein">
+                <img src="img/saya.jpg" alt="Profile Photo" class="profile-image mx-auto mb-6 md:mb-8 animate-fadein">
                 
                 <!-- Hero Text -->
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white animate-fadein" style="animation-delay: 0.2s">
+                <h1 class="text-3xl md:text-5xl font-bold mb-4 md:mb-6 text-white animate-fadein" style="animation-delay: 0.2s">
                     Halo, Saya <span class="text-gold">Muhammad Ilya Hamzah</span>
                 </h1>
-                <p class="text-lg text-text-gray max-w-3xl mx-auto leading-relaxed animate-fadein" style="animation-delay: 0.4s">
+                <p class="text-base md:text-lg text-text-gray max-w-3xl mx-auto leading-relaxed animate-fadein" style="animation-delay: 0.4s">
                     Seorang Backend Developer dengan spesialisasi dalam pengembangan sistem server yang kuat dan efisien. Saya berkomitmen untuk menciptakan arsitektur backend yang skalabel, aman, dan berkinerja tinggi untuk mendukung aplikasi modern.
                 </p>
                 
-                <div class="mt-10 animate-fadein" style="animation-delay: 0.6s">
-                    <a href="#contact" class="inline-block px-8 py-3 bg-gold text-navy-darker font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300 mr-4">
+                <div class="mt-8 md:mt-10 animate-fadein hero-buttons" style="animation-delay: 0.6s">
+                    <a href="#contact" class="inline-block w-full md:w-auto px-6 md:px-8 py-3 bg-gold text-navy-darker font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300 mb-2 md:mb-0 md:mr-4">
                         Hubungi Saya
                     </a>
-                    <a href="#portfolio" class="inline-block px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300">
+                    <a href="#portfolio" class="inline-block w-full md:w-auto px-6 md:px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300">
                         Lihat Portfolio
                     </a>
                 </div>
@@ -197,59 +307,59 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="bg-navy-darker py-20">
-            <div class="container mx-auto px-6">
+        <section id="about" class="bg-navy-darker py-12 md:py-20">
+            <div class="container mx-auto px-4 md:px-6">
                 <!-- Section Title -->
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                <div class="text-center mb-12 md:mb-16 section-title">
+                    <h2 class="text-2xl md:text-4xl font-bold mb-4 text-white">
                         <span class="text-gold">//</span> Tentang Saya <span class="text-gold">//</span>
                     </h2>
-                    <div class="w-20 h-1 bg-gold mx-auto"></div>
+                    <div class="w-16 md:w-20 h-1 bg-gold mx-auto"></div>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
                     <!-- Education -->
                     <div>
-                        <h3 class="text-2xl mb-8 text-white text-center lg:text-left flex items-center">
+                        <h3 class="text-xl md:text-2xl mb-6 md:mb-8 text-white text-center lg:text-left flex items-center justify-center lg:justify-start">
                             <span class="w-8 h-1 bg-gold mr-4 hidden lg:block"></span>
                             Riwayat Pendidikan
                         </h3>
-                        <div class="space-y-6">
+                        <div class="space-y-4 md:space-y-6">
                             <div class="timeline-item">
-                                <div class="bg-navy-card p-6 rounded-lg border-l-4 border-gold">
-                                    <h4 class="font-bold mb-1 text-white text-lg">Les Private Al Hafidz</h4>
-                                    <p class="text-text-gray text-sm mb-2">2012 - 2014</p>
-                                    <p class="text-text-gray text-sm leading-relaxed">
+                                <div class="bg-navy-card p-4 md:p-6 rounded-lg border-l-4 border-gold">
+                                    <h4 class="font-bold mb-1 text-white text-base md:text-lg">Les Private Al Hafidz</h4>
+                                    <p class="text-text-gray text-xs md:text-sm mb-2">2012 - 2014</p>
+                                    <p class="text-text-gray text-xs md:text-sm leading-relaxed">
                                         Pendidikan dasar agama dan tahfidz Quran yang membentuk dasar karakter dan disiplin saya.
                                     </p>
                                 </div>
                             </div>
                                                         
                             <div class="timeline-item">
-                                <div class="bg-navy-card p-6 rounded-lg border-l-4 border-gold">
-                                    <h4 class="font-bold mb-1 text-white text-lg">SDN Sindang Sari 1</h4>
-                                    <p class="text-text-gray text-sm mb-2">2014 - 2020</p>
-                                    <p class="text-text-gray text-sm leading-relaxed">
+                                <div class="bg-navy-card p-4 md:p-6 rounded-lg border-l-4 border-gold">
+                                    <h4 class="font-bold mb-1 text-white text-base md:text-lg">SDN Sindang Sari 1</h4>
+                                    <p class="text-text-gray text-xs md:text-sm mb-2">2014 - 2020</p>
+                                    <p class="text-text-gray text-xs md:text-sm leading-relaxed">
                                         Pendidikan dasar formal dimana saya mulai tertarik dengan teknologi dan komputer.
                                     </p>
                                 </div>
                             </div>
                                                         
                             <div class="timeline-item">
-                                <div class="bg-navy-card p-6 rounded-lg border-l-4 border-gold">
-                                    <h4 class="font-bold mb-1 text-white text-lg">SMP Amaliah</h4>
-                                    <p class="text-text-gray text-sm mb-2">2020 - 2023</p>
-                                    <p class="text-text-gray text-sm leading-relaxed">
+                                <div class="bg-navy-card p-4 md:p-6 rounded-lg border-l-4 border-gold">
+                                    <h4 class="font-bold mb-1 text-white text-base md:text-lg">SMP Amaliah</h4>
+                                    <p class="text-text-gray text-xs md:text-sm mb-2">2020 - 2023</p>
+                                    <p class="text-text-gray text-xs md:text-sm leading-relaxed">
                                         Masa dimana saya mulai serius mempelajari pemrograman dasar dan logika komputer.
                                     </p>
                                 </div>
                             </div>
                                                         
                             <div class="timeline-item">
-                                <div class="bg-navy-card p-6 rounded-lg border-l-4 border-gold">
-                                    <h4 class="font-bold mb-1 text-white text-lg">SMK Amaliah 1</h4>
-                                    <p class="text-text-gray text-sm mb-2">2023 - Sekarang</p>
-                                    <p class="text-text-gray text-sm leading-relaxed">
+                                <div class="bg-navy-card p-4 md:p-6 rounded-lg border-l-4 border-gold">
+                                    <h4 class="font-bold mb-1 text-white text-base md:text-lg">SMK Amaliah 1</h4>
+                                    <p class="text-text-gray text-xs md:text-sm mb-2">2023 - Sekarang</p>
+                                    <p class="text-text-gray text-xs md:text-sm leading-relaxed">
                                         Fokus pada pengembangan kompetensi di bidang Rekayasa Perangkat Lunak dengan spesialisasi backend development.
                                     </p>
                                 </div>
@@ -259,14 +369,14 @@
                                         
                     <!-- Personal Info -->
                     <div class="text-center lg:text-left">
-                        <h3 class="text-2xl md:text-3xl mb-4 text-white">
+                        <h3 class="text-xl md:text-2xl lg:text-3xl mb-4 text-white">
                             Profesional <span class="text-gold">Backend Developer</span>
                         </h3>
-                        <p class="text-text-gray mb-8 leading-relaxed">
+                        <p class="text-text-gray mb-6 md:mb-8 leading-relaxed">
                             Dengan pengalaman dalam membangun sistem backend yang robust, saya memiliki keahlian dalam:
                         </p>
                         
-                        <ul class="space-y-4 mb-8">
+                        <ul class="space-y-3 md:space-y-4 mb-6 md:mb-8">
                             <li class="flex items-start">
                                 <span class="text-gold mr-2 mt-1">✓</span>
                                 <span class="text-white">Membangun API RESTful yang efisien dan terdokumentasi dengan baik</span>
@@ -290,24 +400,24 @@
                         </ul>
                                                 
                         <!-- Personal Details -->
-                        <div class="bg-navy-card p-6 rounded-lg">
-                            <h4 class="text-xl font-bold mb-4 text-gold">Informasi Pribadi</h4>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <div class="text-text-gray font-medium">Tanggal Lahir:</div>
-                                    <div class="text-white">12 Maret 2008</div>
+                        <div class="bg-navy-card p-4 md:p-6 rounded-lg">
+                            <h4 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gold">Informasi Pribadi</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                                <div class="mb-2">
+                                    <div class="text-text-gray text-sm md:text-base font-medium">Tanggal Lahir:</div>
+                                    <div class="text-white text-sm md:text-base">12 Maret 2008</div>
                                 </div>
-                                <div>
-                                    <div class="text-text-gray font-medium">Alamat:</div>
-                                    <div class="text-white">Jl. Raya Tajur Kp. Palasari RT 06 RW 05</div>
+                                <div class="mb-2">
+                                    <div class="text-text-gray text-sm md:text-base font-medium">Alamat:</div>
+                                    <div class="text-white text-sm md:text-base">Jl. Raya Tajur Kp. Palasari RT 06 RW 05</div>
                                 </div>
-                                <div>
-                                    <div class="text-text-gray font-medium">Telepon:</div>
-                                    <div class="text-white">+62 812 1139 1835</div>
+                                <div class="mb-2">
+                                    <div class="text-text-gray text-sm md:text-base font-medium">Telepon:</div>
+                                    <div class="text-white text-sm md:text-base">+62 812 1139 1835</div>
                                 </div>
-                                <div>
-                                    <div class="text-text-gray font-medium">Email:</div>
-                                    <div class="text-white break-all">muhammadilyahamzah@gmail.com</div>
+                                <div class="mb-2">
+                                    <div class="text-text-gray text-sm md:text-base font-medium">Email:</div>
+                                    <div class="text-white text-sm md:text-base break-all">muhammadilyahamzah@gmail.com</div>
                                 </div>
                             </div>
                         </div>
@@ -317,117 +427,117 @@
         </section>
 
         <!-- Skills Section -->
-        <section class="bg-gradient-to-b from-gray-900 to-gray-800 py-20">
-        <div class="container mx-auto px-6">
-            <!-- Section Title -->
-            <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white tracking-wide">
-                <span class="text-gold">//</span> Keahlian Saya <span class="text-gold">//</span>
-            </h2>
-            <div class="w-24 h-1 bg-gold mx-auto rounded-full"></div>
-            <p class="text-gray-300 max-w-2xl mx-auto mt-4 text-lg">
-                Berikut adalah teknologi dan keahlian yang saya kuasai beserta tingkat kemahiran saya
-            </p>
-            </div>
-
-            <!-- Skills Grid -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-10">
-            <!-- Skill Card -->
-            <div class="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition transform">
-                <div class="relative mx-auto w-28 h-28 mb-4">
-                <svg class="absolute inset-0 w-full h-full transform -rotate-90">
-                    <circle cx="56" cy="56" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none" />
-                    <circle cx="56" cy="56" r="50" stroke="url(#gradGold)" stroke-width="10" fill="none"
-                    stroke-dasharray="314" stroke-dashoffset="110"
-                    stroke-linecap="round" />
-                    <defs>
-                    <linearGradient id="gradGold" x1="0" x2="1" y1="0" y2="1">
-                        <stop stop-color="#fbbf24" />
-                        <stop stop-color="#f59e0b" offset="1" />
-                    </linearGradient>
-                    </defs>
-                </svg>
-                <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-2xl">65%</div>
+        <section class="bg-gradient-to-b from-gray-900 to-gray-800 py-12 md:py-20">
+            <div class="container mx-auto px-4 md:px-6">
+                <!-- Section Title -->
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white tracking-wide">
+                        <span class="text-gold">//</span> Keahlian Saya <span class="text-gold">//</span>
+                    </h2>
+                    <div class="w-16 md:w-24 h-1 bg-gold mx-auto rounded-full"></div>
+                    <p class="text-gray-300 max-w-2xl mx-auto mt-3 md:mt-4 text-sm md:text-lg">
+                        Berikut adalah teknologi dan keahlian yang saya kuasai beserta tingkat kemahiran saya
+                    </p>
                 </div>
-                <h3 class="text-lg font-bold text-white">HTML5</h3>
-                <p class="text-gold font-semibold">Intermediate</p>
-            </div>
 
-            <!-- Skill Card -->
-            <div class="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition transform">
-                <div class="relative mx-auto w-28 h-28 mb-4">
-                <svg class="absolute inset-0 w-full h-full transform -rotate-90">
-                    <circle cx="56" cy="56" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none" />
-                    <circle cx="56" cy="56" r="50" stroke="url(#gradGold)" stroke-width="10" fill="none"
-                    stroke-dasharray="314" stroke-dashoffset="220"
-                    stroke-linecap="round" />
-                </svg>
-                <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-2xl">30%</div>
-                </div>
-                <h3 class="text-lg font-bold text-white">PHP</h3>
-                <p class="text-gold font-semibold">Basic</p>
-            </div>
+                <!-- Skills Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 skill-grid">
+                    <!-- Skill Card -->
+                    <div class="bg-gray-800 rounded-xl md:rounded-2xl shadow-lg p-4 md:p-6 text-center hover:scale-105 transition transform skill-card">
+                        <div class="relative mx-auto w-20 h-20 md:w-28 md:h-28 mb-3 md:mb-4">
+                            <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                                <circle cx="50%" cy="50%" r="40%" stroke="rgba(255,255,255,0.1)" stroke-width="8%" fill="none" />
+                                <circle cx="50%" cy="50%" r="40%" stroke="url(#gradGold)" stroke-width="8%" fill="none"
+                                stroke-dasharray="314" stroke-dashoffset="110"
+                                stroke-linecap="round" />
+                                <defs>
+                                <linearGradient id="gradGold" x1="0" x2="1" y1="0" y2="1">
+                                    <stop stop-color="#fbbf24" />
+                                    <stop stop-color="#f59e0b" offset="1" />
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-xl md:text-2xl">65%</div>
+                        </div>
+                        <h3 class="text-base md:text-lg font-bold text-white">HTML5</h3>
+                        <p class="text-gold text-sm md:text-base font-semibold">Intermediate</p>
+                    </div>
 
-            <!-- Skill Card -->
-            <div class="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition transform">
-                <div class="relative mx-auto w-28 h-28 mb-4">
-                <svg class="absolute inset-0 w-full h-full transform -rotate-90">
-                    <circle cx="56" cy="56" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none" />
-                    <circle cx="56" cy="56" r="50" stroke="url(#gradGold)" stroke-width="10" fill="none"
-                    stroke-dasharray="314" stroke-dashoffset="188"
-                    stroke-linecap="round" />
-                </svg>
-                <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-2xl">40%</div>
-                </div>
-                <h3 class="text-lg font-bold text-white">Laravel</h3>
-                <p class="text-gold font-semibold">Basic+</p>
-            </div>
+                    <!-- Skill Card -->
+                    <div class="bg-gray-800 rounded-xl md:rounded-2xl shadow-lg p-4 md:p-6 text-center hover:scale-105 transition transform skill-card">
+                        <div class="relative mx-auto w-20 h-20 md:w-28 md:h-28 mb-3 md:mb-4">
+                            <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                                <circle cx="50%" cy="50%" r="40%" stroke="rgba(255,255,255,0.1)" stroke-width="8%" fill="none" />
+                                <circle cx="50%" cy="50%" r="40%" stroke="url(#gradGold)" stroke-width="8%" fill="none"
+                                stroke-dasharray="314" stroke-dashoffset="220"
+                                stroke-linecap="round" />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-xl md:text-2xl">30%</div>
+                        </div>
+                        <h3 class="text-base md:text-lg font-bold text-white">PHP</h3>
+                        <p class="text-gold text-sm md:text-base font-semibold">Basic</p>
+                    </div>
 
-            <!-- Skill Card -->
-            <div class="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition transform">
-                <div class="relative mx-auto w-28 h-28 mb-4">
-                <svg class="absolute inset-0 w-full h-full transform -rotate-90">
-                    <circle cx="56" cy="56" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none" />
-                    <circle cx="56" cy="56" r="50" stroke="url(#gradGold)" stroke-width="10" fill="none"
-                    stroke-dasharray="314" stroke-dashoffset="204"
-                    stroke-linecap="round" />
-                </svg>
-                <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-2xl">35%</div>
+                    <!-- Skill Card -->
+                    <div class="bg-gray-800 rounded-xl md:rounded-2xl shadow-lg p-4 md:p-6 text-center hover:scale-105 transition transform skill-card">
+                        <div class="relative mx-auto w-20 h-20 md:w-28 md:h-28 mb-3 md:mb-4">
+                            <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                                <circle cx="50%" cy="50%" r="40%" stroke="rgba(255,255,255,0.1)" stroke-width="8%" fill="none" />
+                                <circle cx="50%" cy="50%" r="40%" stroke="url(#gradGold)" stroke-width="8%" fill="none"
+                                stroke-dasharray="314" stroke-dashoffset="188"
+                                stroke-linecap="round" />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-xl md:text-2xl">40%</div>
+                        </div>
+                        <h3 class="text-base md:text-lg font-bold text-white">Laravel</h3>
+                        <p class="text-gold text-sm md:text-base font-semibold">Basic+</p>
+                    </div>
+
+                    <!-- Skill Card -->
+                    <div class="bg-gray-800 rounded-xl md:rounded-2xl shadow-lg p-4 md:p-6 text-center hover:scale-105 transition transform skill-card">
+                        <div class="relative mx-auto w-20 h-20 md:w-28 md:h-28 mb-3 md:mb-4">
+                            <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                                <circle cx="50%" cy="50%" r="40%" stroke="rgba(255,255,255,0.1)" stroke-width="8%" fill="none" />
+                                <circle cx="50%" cy="50%" r="40%" stroke="url(#gradGold)" stroke-width="8%" fill="none"
+                                stroke-dasharray="314" stroke-dashoffset="204"
+                                stroke-linecap="round" />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-xl md:text-2xl">35%</div>
+                        </div>
+                        <h3 class="text-base md:text-lg font-bold text-white">UI/UX</h3>
+                        <p class="text-gold text-sm md:text-base font-semibold">Basic</p>
+                    </div>
                 </div>
-                <h3 class="text-lg font-bold text-white">UI/UX</h3>
-                <p class="text-gold font-semibold">Basic</p>
             </div>
-            </div>
-        </div>
         </section>
         
         <!-- Portfolio Section -->
-        <section id="portfolio" class="bg-navy-darker py-20">
-            <div class="container mx-auto px-6">
+        <section id="portfolio" class="bg-navy-darker py-12 md:py-20">
+            <div class="container mx-auto px-4 md:px-6">
                 <!-- Section Title -->
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">
                         <span class="text-gold">//</span> Project Portfolio <span class="text-gold">//</span>
                     </h2>
-                    <div class="w-20 h-1 bg-gold mx-auto"></div>
-                    <p class="text-text-gray max-w-2xl mx-auto mt-4">
+                    <div class="w-16 md:w-20 h-1 bg-gold mx-auto"></div>
+                    <p class="text-text-gray max-w-2xl mx-auto mt-3 md:mt-4 text-sm md:text-base">
                         Beberapa project yang telah saya selesaikan selama perjalanan pengembangan karir saya
                     </p>
                 </div>
                 
                 <!-- Portfolio Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 portfolio-grid">
                     <!-- Portfolio Item 1 -->
-                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                    <div class="portfolio-card rounded-lg md:rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
                         <div class="overflow-hidden">
                             <img src="img/inventaris.png" alt="Aplikasi Inventaris Sekolah" class="portfolio-image">
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-white">Aplikasi Inventaris Sekolah</h3>
-                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">Aplikasi Inventaris Sekolah</h3>
+                            <p class="text-text-gray text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
                                 Sistem manajemen inventaris sekolah berbasis web dengan fitur:
                             </p>
-                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                            <ul class="text-text-gray text-xs md:text-sm space-y-1 md:space-y-2 mb-3 md:mb-4">
                                 <li class="flex items-start">
                                     <span class="text-gold mr-2">•</span>
                                     <span>Pencatatan barang masuk/keluar</span>
@@ -445,16 +555,16 @@
                     </div>
                                         
                     <!-- Portfolio Item 2 -->
-                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                    <div class="portfolio-card rounded-lg md:rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
                         <div class="overflow-hidden">
                             <img src="img/crud.png" alt="Search Engine & CRUD" class="portfolio-image">
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-white">Search Engine & CRUD</h3>
-                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">Search Engine & CRUD</h3>
+                            <p class="text-text-gray text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
                                 Sistem pencarian data dengan operasi CRUD lengkap:
                             </p>
-                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                            <ul class="text-text-gray text-xs md:text-sm space-y-1 md:space-y-2 mb-3 md:mb-4">
                                 <li class="flex items-start">
                                     <span class="text-gold mr-2">•</span>
                                     <span>Pencarian real-time</span>
@@ -472,16 +582,16 @@
                     </div>
                                         
                     <!-- Portfolio Item 3 -->
-                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                    <div class="portfolio-card rounded-lg md:rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
                         <div class="overflow-hidden">
                             <img src="img/login.png" alt="Login Multi User" class="portfolio-image">
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-white">Login Multi User</h3>
-                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">Login Multi User</h3>
+                            <p class="text-text-gray text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
                                 Sistem autentikasi dengan berbagai level akses:
                             </p>
-                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                            <ul class="text-text-gray text-xs md:text-sm space-y-1 md:space-y-2 mb-3 md:mb-4">
                                 <li class="flex items-start">
                                     <span class="text-gold mr-2">•</span>
                                     <span>3 level user (Admin, Guru, Siswa)</span>
@@ -499,16 +609,16 @@
                     </div>
                                         
                     <!-- Portfolio Item 4 -->
-                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                    <div class="portfolio-card rounded-lg md:rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
                         <div class="overflow-hidden">
                             <img src="img/hukum.png" alt="Design Web Kantor Hukum" class="portfolio-image">
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-white">Design Web Kantor Hukum</h3>
-                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">Design Web Kantor Hukum</h3>
+                            <p class="text-text-gray text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
                                 Desain website profesional untuk firma hukum:
                             </p>
-                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                            <ul class="text-text-gray text-xs md:text-sm space-y-1 md:space-y-2 mb-3 md:mb-4">
                                 <li class="flex items-start">
                                     <span class="text-gold mr-2">•</span>
                                     <span>UI/UX modern</span>
@@ -526,16 +636,16 @@
                     </div>
                                         
                     <!-- Portfolio Item 5 -->
-                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                    <div class="portfolio-card rounded-lg md:rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
                         <div class="overflow-hidden">
                             <img src="img/kalkulator.png" alt="Kalkulator" class="portfolio-image">
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-white">Kalkulator Interaktif</h3>
-                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">Kalkulator Interaktif</h3>
+                            <p class="text-text-gray text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
                                 Aplikasi kalkulator dengan berbagai fitur:
                             </p>
-                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                            <ul class="text-text-gray text-xs md:text-sm space-y-1 md:space-y-2 mb-3 md:mb-4">
                                 <li class="flex items-start">
                                     <span class="text-gold mr-2">•</span>
                                     <span>Operasi matematika dasar</span>
@@ -553,16 +663,16 @@
                     </div>
                                         
                     <!-- Portfolio Item 6 -->
-                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                    <div class="portfolio-card rounded-lg md:rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
                         <div class="overflow-hidden">
                             <img src="img/kontraktor.png" alt="Design Web Kontraktor" class="portfolio-image">
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-white">Design Web Kontraktor</h3>
-                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">Design Web Kontraktor</h3>
+                            <p class="text-text-gray text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
                                 Desain website perusahaan konstruksi:
                             </p>
-                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                            <ul class="text-text-gray text-xs md:text-sm space-y-1 md:space-y-2 mb-3 md:mb-4">
                                 <li class="flex items-start">
                                     <span class="text-gold mr-2">•</span>
                                     <span>Portfolio project</span>
@@ -583,56 +693,56 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="bg-navy-dark py-20">
-            <div class="container mx-auto px-6">
+        <section id="contact" class="bg-navy-dark py-12 md:py-20">
+            <div class="container mx-auto px-4 md:px-6">
                 <!-- Section Title -->
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">
                         <span class="text-gold">//</span> Hubungi Saya <span class="text-gold">//</span>
                     </h2>
-                    <div class="w-20 h-1 bg-gold mx-auto"></div>
-                    <p class="text-text-gray max-w-2xl mx-auto mt-4">
+                    <div class="w-16 md:w-20 h-1 bg-gold mx-auto"></div>
+                    <p class="text-text-gray max-w-2xl mx-auto mt-3 md:mt-4 text-sm md:text-base">
                         Tertarik bekerja sama atau memiliki pertanyaan? Silakan hubungi saya melalui form berikut
                     </p>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 contact-grid">
                     <!-- Contact Form -->
                     <div>
-                        <form class="space-y-6" onsubmit="handleSubmit(event)">
+                        <form class="space-y-4 md:space-y-6" onsubmit="handleSubmit(event)">
                             <div>
-                                <label for="name" class="block text-text-gray mb-2">Nama Lengkap</label>
+                                <label for="name" class="block text-text-gray mb-2 text-sm md:text-base">Nama Lengkap</label>
                                 <input 
                                     type="text"
                                     id="name"
                                     placeholder="Masukkan nama Anda"
                                     required
-                                    class="w-full p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray focus:border-gold focus:outline-none transition-all"
+                                    class="w-full p-3 md:p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray focus:border-gold focus:outline-none transition-all text-sm md:text-base"
                                 >
                             </div>
                             <div>
-                                <label for="email" class="block text-text-gray mb-2">Alamat Email</label>
+                                <label for="email" class="block text-text-gray mb-2 text-sm md:text-base">Alamat Email</label>
                                 <input 
                                     type="email"
                                     id="email"
                                     placeholder="Masukkan email Anda"
                                     required
-                                    class="w-full p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray focus:border-gold focus:outline-none transition-all"
+                                    class="w-full p-3 md:p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray focus:border-gold focus:outline-none transition-all text-sm md:text-base"
                                 >
                             </div>
                             <div>
-                                <label for="message" class="block text-text-gray mb-2">Pesan</label>
+                                <label for="message" class="block text-text-gray mb-2 text-sm md:text-base">Pesan</label>
                                 <textarea 
                                     id="message"
-                                    rows="6"
+                                    rows="5"
                                     placeholder="Tulis pesan Anda disini..."
                                     required
-                                    class="w-full p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray resize-none focus:border-gold focus:outline-none transition-all"
+                                    class="w-full p-3 md:p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray resize-none focus:border-gold focus:outline-none transition-all text-sm md:text-base"
                                 ></textarea>
                             </div>
                             <button 
                                 type="submit"
-                                class="px-8 py-3 bg-gold text-navy-darker font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300 transform hover:scale-105"
+                                class="w-full md:w-auto px-6 md:px-8 py-3 bg-gold text-navy-darker font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300 transform hover:scale-105 text-sm md:text-base"
                             >
                                 Kirim Pesan
                             </button>
@@ -640,45 +750,45 @@
                     </div>
                                         
                     <!-- Contact Info -->
-                    <div>
-                        <h3 class="text-2xl mb-8 text-white text-center lg:text-left">
+                    <div class="contact-info">
+                        <h3 class="text-xl md:text-2xl mb-6 md:mb-8 text-white text-center lg:text-left">
                             Informasi Kontak
                         </h3>
-                        <div class="space-y-6">
+                        <div class="space-y-4 md:space-y-6">
                             <!-- Email -->
-                            <div class="flex items-start gap-4 bg-navy-card p-6 rounded-lg hover-lift transition-all">
-                                <div class="w-14 h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-xl flex-shrink-0">
+                            <div class="flex items-start gap-3 md:gap-4 bg-navy-card p-4 md:p-6 rounded-lg hover-lift transition-all">
+                                <div class="w-10 h-10 md:w-14 md:h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-lg md:text-xl flex-shrink-0">
                                     ✉
                                 </div>
                                 <div>
-                                    <h4 class="font-bold mb-2 text-white">Email</h4>
-                                    <p class="text-text-gray break-all hover:text-gold transition-colors">
+                                    <h4 class="font-bold mb-1 md:mb-2 text-white text-base md:text-lg">Email</h4>
+                                    <p class="text-text-gray text-xs md:text-sm break-all hover:text-gold transition-colors">
                                         <a href="mailto:muhammadilyahamzah@gmail.com">muhammadilyahamzah@gmail.com</a>
                                     </p>
                                 </div>
                             </div>
                                                         
                             <!-- Phone -->
-                            <div class="flex items-start gap-4 bg-navy-card p-6 rounded-lg hover-lift transition-all">
-                                <div class="w-14 h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-xl flex-shrink-0">
+                            <div class="flex items-start gap-3 md:gap-4 bg-navy-card p-4 md:p-6 rounded-lg hover-lift transition-all">
+                                <div class="w-10 h-10 md:w-14 md:h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-lg md:text-xl flex-shrink-0">
                                     📞
                                 </div>
                                 <div>
-                                    <h4 class="font-bold mb-2 text-white">Telepon/WhatsApp</h4>
-                                    <p class="text-text-gray hover:text-gold transition-colors">
+                                    <h4 class="font-bold mb-1 md:mb-2 text-white text-base md:text-lg">Telepon/WhatsApp</h4>
+                                    <p class="text-text-gray text-xs md:text-sm hover:text-gold transition-colors">
                                         <a href="https://wa.me/6281211391835">+62 812 1139 1835</a>
                                     </p>
                                 </div>
                             </div>
                                                         
                             <!-- Address -->
-                            <div class="flex items-start gap-4 bg-navy-card p-6 rounded-lg hover-lift transition-all">
-                                <div class="w-14 h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-xl flex-shrink-0">
+                            <div class="flex items-start gap-3 md:gap-4 bg-navy-card p-4 md:p-6 rounded-lg hover-lift transition-all">
+                                <div class="w-10 h-10 md:w-14 md:h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-lg md:text-xl flex-shrink-0">
                                     📍
                                 </div>
                                 <div>
-                                    <h4 class="font-bold mb-2 text-white">Alamat</h4>
-                                    <p class="text-text-gray">
+                                    <h4 class="font-bold mb-1 md:mb-2 text-white text-base md:text-lg">Alamat</h4>
+                                    <p class="text-text-gray text-xs md:text-sm">
                                         Jl. Raya Tajur Kp. Palasari RT 06 RW 05, Kota Bogor, Jawa Barat
                                     </p>
                                 </div>
@@ -686,22 +796,22 @@
                         </div>
                         
                         <!-- Social Media -->
-                        <div class="mt-12">
-                            <h4 class="text-xl font-bold mb-6 text-white text-center lg:text-left">
+                        <div class="mt-8 md:mt-12">
+                            <h4 class="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white text-center lg:text-left">
                                 Media Sosial
                             </h4>
-                            <div class="flex justify-center lg:justify-start space-x-6">
-                                <a href="#" class="w-12 h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
-                                    <span class="text-xl">f</span>
+                            <div class="flex space-x-4 md:space-x-6 social-media">
+                                <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
+                                    <span class="text-base md:text-xl">f</span>
                                 </a>
-                                <a href="#" class="w-12 h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
-                                    <span class="text-xl">in</span>
+                                <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
+                                    <span class="text-base md:text-xl">in</span>
                                 </a>
-                                <a href="#" class="w-12 h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
-                                    <span class="text-xl">ig</span>
+                                <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
+                                    <span class="text-base md:text-xl">ig</span>
                                 </a>
-                                <a href="#" class="w-12 h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
-                                    <span class="text-xl">gh</span>
+                                <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
+                                    <span class="text-base md:text-xl">gh</span>
                                 </a>
                             </div>
                         </div>
@@ -712,15 +822,15 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-navy-darker py-8 border-t border-white">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-text-gray mb-4 md:mb-0">
+    <footer class="bg-navy-darker py-6 md:py-8 border-t border-white">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center footer-content">
+                <p class="text-text-gray mb-3 md:mb-0 text-sm md:text-base">
                     © 2025, Dirancang oleh <span class="text-gold">Ilya</span>. Hak cipta dilindungi.
                 </p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-text-gray hover:text-gold transition-colors">Kebijakan Privasi</a>
-                    <a href="#" class="text-text-gray hover:text-gold transition-colors">Syarat & Ketentuan</a>
+                <div class="flex space-x-4 md:space-x-6">
+                    <a href="#" class="text-text-gray hover:text-gold transition-colors text-sm md:text-base">Kebijakan Privasi</a>
+                    <a href="#" class="text-text-gray hover:text-gold transition-colors text-sm md:text-base">Syarat & Ketentuan</a>
                 </div>
             </div>
         </div>
@@ -730,26 +840,22 @@
         // Mobile menu toggle
         function toggleMobileMenu() {
             const navMobile = document.querySelector('.nav-mobile');
-            navMobile.classList.toggle('active');
+            const body = document.body;
+            
+            if (navMobile.classList.contains('active')) {
+                navMobile.classList.remove('active');
+                body.style.overflow = 'auto';
+            } else {
+                navMobile.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
         }
 
         // Close mobile menu when clicking on links
         document.querySelectorAll('.nav-mobile a').forEach(link => {
             link.addEventListener('click', () => {
-                const navMobile = document.querySelector('.nav-mobile');
-                navMobile.classList.remove('active');
+                toggleMobileMenu();
             });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const nav = document.querySelector('nav');
-            const navMobile = document.querySelector('.nav-mobile');
-            const menuBtn = document.querySelector('button');
-                    
-            if (!nav.contains(e.target) && !menuBtn.contains(e.target) && navMobile.classList.contains('active')) {
-                navMobile.classList.remove('active');
-            }
         });
 
         // Smooth scrolling for navigation links
