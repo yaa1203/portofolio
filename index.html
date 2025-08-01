@@ -1,1340 +1,314 @@
-/* Large devices */<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Ilya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy-dark': '#1e2a3a',
+                        'navy-darker': '#162030',
+                        'navy-card': '#2a3b4d',
+                        'gold': '#d4af37',
+                        'text-gray': '#a8b3c1'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1a1f2e;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #0d1117;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 1rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #d4af37;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s;
-            text-transform: capitalize;
-        }
-
-        .nav-links a:hover {
-            color: #d4af37;
-        }
-
-        /* Mobile menu toggle */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .mobile-menu-btn:hover {
-            color: #d4af37;
-        }
-
-        .nav-links.mobile-active {
-            display: flex;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: #0d1117;
-            flex-direction: column;
-            gap: 0;
-            padding: 1rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border-top: 1px solid #2d3748;
-        }
-
-        .nav-links.mobile-active li {
-            text-align: center;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #1a1f2e;
-        }
-
-        .nav-links.mobile-active li:last-child {
-            border-bottom: none;
-        }
-
-        .nav-links.mobile-active a {
-            font-size: 1.1rem;
-            display: block;
-            padding: 0.5rem 2rem;
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 70px;
-        }
-
-        /* Scroll offset for fixed header */
-        section {
-            scroll-margin-top: 90px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0;
-            text-align: center;
-            background: linear-gradient(135deg, #1a1f2e 0%, #2d3748 100%);
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            background: #fff;
-            overflow: hidden;
-            border: 3px solid #d4af37;
-            position: relative;
-        }
-
-        .profile-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-img-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #d4af37, #f4e680);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #1a1f2e;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #b8c5d6;
-            max-width: 100%;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        /* About Section */
-        .about {
-            padding: 4rem 0;
-            background: #0d1117;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 3px;
-            background: #d4af37;
-            display: block;
-            margin: 1rem auto;
-        }
-
-        .about-content {
-            display: block;
-            margin-top: 3rem;
-        }
-
-        .about-left {
-            margin-bottom: 3rem;
-        }
-
-        .about-left h3 {
-            font-size: 1.3rem;
-            color: #ffffff;
-            margin-bottom: 2rem;
-        }
-
-        .education-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #1a1f2e;
-            border-radius: 8px;
-            border-left: 3px solid #d4af37;
-        }
-
-        .education-icon {
-            width: 40px;
-            height: 40px;
-            background: #d4af37;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-            color: #0d1117;
-            flex-shrink: 0;
-        }
-
-        .education-content h4 {
-            color: #ffffff;
-            margin-bottom: 0.3rem;
-            font-size: 1rem;
-        }
-
-        .education-content p {
-            color: #b8c5d6;
-            font-size: 0.9rem;
-        }
-
-        .about-right h3 {
-            font-size: 1.8rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        .about-right h4 {
-            font-size: 1.2rem;
-            color: #d4af37;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text {
-            color: #b8c5d6;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .personal-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-
-        .info-label {
-            color: #b8c5d6;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .info-value {
-            color: #ffffff;
-            font-size: 0.95rem;
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #1a1f2e 0%, #2d3748 100%);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-item {
-            text-align: center;
-        }
-
         .skill-circle {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            position: relative;
-            background: conic-gradient(#d4af37 0deg, #d4af37 var(--progress), #2d3748 var(--progress), #2d3748 360deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: conic-gradient(#d4af37 0deg, #d4af37 var(--progress), #ffffff var(--progress), #ffffff 360deg);
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
-
+        
         .skill-circle::before {
             content: '';
-            width: 90px;
-            height: 90px;
-            background: #1a1f2e;
-            border-radius: 50%;
             position: absolute;
-        }
-
-        .skill-percentage {
-            position: relative;
-            z-index: 1;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .skill-name {
-            font-size: 1rem;
-            color: #ffffff;
-            font-weight: 500;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            padding: 4rem 0;
-            background: #0d1117;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .portfolio-item {
-            background: #1a1f2e;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #2d3748;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.1);
-        }
-
-        .portfolio-img {
-            width: 100%;
-            height: 180px;
-            background: #2d3748;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #b8c5d6;
-            font-size: 0.9rem;
-            overflow: hidden;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .portfolio-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .portfolio-content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-content h3 {
-            color: #ffffff;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .portfolio-content p {
-            color: #b8c5d6;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #1a1f2e 0%, #2d3748 100%);
-        }
-
-        .contact-content {
-            display: block;
-            margin-top: 3rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 1.2rem;
-            background: #0d1117;
-            border: 2px solid #2d3748;
-            border-radius: 8px;
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: #6b7280;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: #d4af37;
-        }
-
-        .submit-btn {
-            padding: 1.2rem 2.5rem;
-            background: #0d1117;
-            color: #ffffff;
-            border: 2px solid #d4af37;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-            align-self: flex-start;
-        }
-
-        .submit-btn:hover {
-            background: #d4af37;
-            color: #0d1117;
-        }
-
-        .contact-info h3 {
-            color: #ffffff;
-            margin-bottom: 2rem;
-            font-size: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: #0d1117;
-            border: 2px solid #d4af37;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #d4af37;
-            font-size: 1.2rem;
-            flex-shrink: 0;
+            background: #1e2a3a;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
         }
-
-        .contact-details h4 {
-            color: #ffffff;
-            margin-bottom: 0.3rem;
-            font-size: 1rem;
+        
+        .skill-badge {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4af37;
+            color: #162030;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
         }
-
-        .contact-details p {
-            color: #b8c5d6;
-            font-size: 0.9rem;
-            word-break: break-all;
+        
+        .nav-mobile {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
         }
-
-        /* Footer */
-        footer {
-            background: #0d1117;
-            text-align: center;
-            padding: 2rem 0;
-            color: #b8c5d6;
-            border-top: 1px solid #2d3748;
+        
+        .nav-mobile.active {
+            transform: translateY(0);
         }
-
-        footer p {
-            font-size: 0.9rem;
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
-
-        /* Mobile First Approach - Extra Small devices */
-        @media (max-width: 576px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 3rem 0;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-            }
-            
-            .hero p {
-                font-size: 0.95rem;
-                line-height: 1.6;
-                padding: 0 0.5rem;
-            }
-
-            .profile-img {
-                width: 100px;
-                height: 100px;
-                margin-bottom: 1.5rem;
-            }
-
-            .profile-img-placeholder {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.6rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .section-title::after {
-                width: 60px;
-                height: 2px;
-                margin: 0.8rem auto;
-            }
-
-            .about, .skills, .portfolio, .contact {
-                padding: 3rem 0;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                margin-top: 2rem;
-            }
-
-            .skill-circle {
-                width: 120px;
-                height: 120px;
-            }
-
-            .skill-circle::before {
-                width: 90px;
-                height: 90px;
-            }
-
-            .skill-percentage {
-                font-size: 1.4rem;
-            }
-
-            .skill-name {
-                font-size: 0.95rem;
-                margin-top: 0.5rem;
-            }
-
-            .education-item {
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-
-            .education-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-                margin-right: 0.8rem;
-            }
-
-            .education-content h4 {
-                font-size: 0.95rem;
-                line-height: 1.3;
-            }
-
-            .education-content p {
-                font-size: 0.85rem;
-            }
-
-            .about-right h3 {
-                font-size: 1.5rem;
-                line-height: 1.2;
-            }
-
-            .about-right h4 {
-                font-size: 1.1rem;
-            }
-
-            .about-text {
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-
-            .portfolio-grid {
-                margin-top: 2rem;
-                gap: 1.2rem;
-            }
-
-            .portfolio-img {
-                height: 150px;
-                font-size: 0.85rem;
-                padding: 0.8rem;
-            }
-
-            .portfolio-content {
-                padding: 1.2rem;
-            }
-
-            .portfolio-content h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .portfolio-content p {
-                font-size: 0.85rem;
-                line-height: 1.5;
-            }
-
-            .contact-content {
-                margin-top: 2rem;
-            }
-
-            .contact-form {
-                gap: 1.2rem;
-                margin-bottom: 2.5rem;
-            }
-
-            .contact-form input,
-            .contact-form textarea {
-                padding: 1rem;
-                font-size: 0.95rem;
-            }
-
-            .submit-btn {
-                padding: 1rem 2rem;
-                font-size: 0.95rem;
-            }
-
-            .contact-info h3 {
-                font-size: 1.3rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .contact-item {
-                gap: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .contact-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-
-            .contact-details h4 {
-                font-size: 0.95rem;
-            }
-
-            .contact-details p {
-                font-size: 0.85rem;
-                line-height: 1.4;
-            }
-
-            .nav-links {
-                gap: 0.8rem;
-            }
-
-            .nav-links a {
-                font-size: 0.85rem;
-            }
-
-            .logo {
-                font-size: 1.4rem;
-            }
-
-            .info-item {
-                margin-bottom: 0.8rem;
-            }
-
-            .info-label {
-                font-size: 0.85rem;
-                margin-bottom: 0.2rem;
-            }
-
-            .info-value {
-                font-size: 0.9rem;
-                line-height: 1.3;
-            }
+        
+        .portfolio-card {
+            background: linear-gradient(135deg, #2a3b4d 0%, #243445 100%);
+            transition: all 0.3s ease;
         }
-
-        /* Small devices */
-        @media (min-width: 576px) and (max-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        
+        .profile-image {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
-
-        /* Medium devices */
-        @media (min-width: 768px) {
-            .mobile-menu-btn {
-                display: none;
-            }
-
-            .nav-links {
-                display: flex !important;
-                position: static;
-                flex-direction: row;
-                background: none;
-                box-shadow: none;
-                padding: 0;
-                border-top: none;
-            }
-
-            .nav-links li {
-                text-align: left;
-                padding: 0;
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                font-size: 1rem;
-                padding: 0;
-            }
-            .container {
-                padding: 0 2rem;
-            }
-
-            .nav-links {
-                gap: 2.5rem;
-            }
-
-            .about-content {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 4rem;
-            }
-
-            .about-left {
-                margin-bottom: 0;
-            }
-
-            .contact-content {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 4rem;
-            }
-
-            .contact-form {
-                margin-bottom: 0;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-
-            .hero {
-                padding: 5rem 0;
-            }
-
-            .about, .skills, .portfolio, .contact {
-                padding: 5rem 0;
-            }
-
-            .profile-img {
-                width: 180px;
-                height: 180px;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .info-item {
-                flex-direction: row;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .info-label {
-                min-width: 120px;
-            }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 192px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
-
-        /* Add ultra small screens optimization */
-        @media (max-width: 360px) {
-            .container {
-                padding: 0 0.3rem;
-            }
-
-            .hero {
-                padding: 2rem 0;
-            }
-
-            .hero h1 {
-                font-size: 1.4rem;
-                line-height: 1.2;
-            }
-
-            .hero p {
-                font-size: 0.85rem;
-                padding: 0 0.2rem;
-            }
-
-            .profile-img {
-                width: 80px;
-                height: 80px;
-                margin-bottom: 1rem;
-            }
-
-            .profile-img-placeholder {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 1.3rem;
-            }
-
-            .about, .skills, .portfolio, .contact {
-                padding: 2rem 0;
-            }
-
-            .about-left h3, .contact-info h3 {
-                font-size: 1.1rem;
-            }
-
-            .about-right h3 {
-                font-size: 1.2rem;
-                line-height: 1.1;
-            }
-
-            .about-right h4 {
-                font-size: 0.95rem;
-            }
-
-            .about-text {
-                font-size: 0.85rem;
-            }
-
-            .education-item {
-                padding: 0.6rem;
-                border-radius: 6px;
-            }
-
-            .education-icon {
-                width: 25px;
-                height: 25px;
-                font-size: 0.8rem;
-            }
-
-            .education-content h4 {
-                font-size: 0.9rem;
-            }
-
-            .education-content p {
-                font-size: 0.8rem;
-            }
-
-            .skill-circle {
-                width: 100px;
-                height: 100px;
-            }
-
-            .skill-circle::before {
-                width: 78px;
-                height: 78px;
-            }
-
-            .skill-percentage {
-                font-size: 1.2rem;
-            }
-
-            .skill-name {
-                font-size: 0.9rem;
-            }
-
-            .portfolio-img {
-                height: 120px;
-                font-size: 0.75rem;
-            }
-
-            .portfolio-content {
-                padding: 0.8rem;
-            }
-
-            .portfolio-content h3 {
-                font-size: 0.95rem;
-                margin-bottom: 0.6rem;
-            }
-
-            .portfolio-content p {
-                font-size: 0.75rem;
-                line-height: 1.4;
-            }
-
-            .contact-form {
-                gap: 1rem;
-            }
-
-            .contact-form input,
-            .contact-form textarea {
-                padding: 0.8rem;
-                font-size: 0.85rem;
-                border-radius: 6px;
-            }
-
-            .submit-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.85rem;
-                border-radius: 6px;
-            }
-
-            .contact-icon {
-                width: 30px;
-                height: 30px;
-                font-size: 0.8rem;
-            }
-
-            .contact-details h4 {
-                font-size: 0.9rem;
-            }
-
-            .contact-details p {
-                font-size: 0.8rem;
-            }
-
-            .info-item {
-                margin-bottom: 0.6rem;
-            }
-
-            .info-label {
-                font-size: 0.8rem;
-            }
-
-            .info-value {
-                font-size: 0.85rem;
-            }
-
-            .logo {
-                font-size: 1.1rem;
-            }
-
-            nav {
-                padding: 0 0.5rem;
-            }
-
-            header {
-                padding: 0.6rem 0;
-            }
-
-            main {
-                margin-top: 55px;
-            }
-
-            section {
-                scroll-margin-top: 70px;
-            }
-
-            footer p {
-                font-size: 0.75rem;
-                padding: 0 0.5rem;
-            }
+        
+        .portfolio-card:hover .portfolio-image {
+            transform: scale(1.05);
         }
-        @media (min-width: 992px) {
-            .skills-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 3rem;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .skill-circle {
-                width: 150px;
-                height: 150px;
-            }
-
-            .skill-circle::before {
-                width: 110px;
-                height: 110px;
-            }
-
-            .skill-percentage {
-                font-size: 2rem;
-            }
-
-            .hero {
-                padding: 6rem 0;
-            }
-
-            .about, .skills, .portfolio, .contact {
-                padding: 6rem 0;
-            }
-
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
-
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-                max-width: 800px;
-            }
-
-            .about-content {
-                gap: 6rem;
-            }
-
-            .contact-content {
-                gap: 6rem;
-            }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
         }
-
-        /* Hide navigation on very small screens and add hamburger concept */
-        @media (max-width: 480px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .container {
-                padding: 0 0.5rem;
-            }
-
-            .hero {
-                padding: 2.5rem 0;
-            }
-
-            .hero h1 {
-                font-size: 1.6rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .hero p {
-                font-size: 0.9rem;
-                padding: 0 0.3rem;
-                line-height: 1.5;
-            }
-
-            .profile-img {
-                width: 90px;
-                height: 90px;
-                margin-bottom: 1.2rem;
-            }
-
-            .profile-img-placeholder {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.4rem;
-            }
-
-            .section-title::after {
-                width: 50px;
-                height: 2px;
-            }
-
-            .about, .skills, .portfolio, .contact {
-                padding: 2.5rem 0;
-            }
-
-            .about-left h3 {
-                font-size: 1.2rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .about-right h3 {
-                font-size: 1.3rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .about-right h4 {
-                font-size: 1rem;
-                margin-bottom: 1.2rem;
-            }
-
-            .education-item {
-                padding: 0.8rem;
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-            }
-
-            .education-icon {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
-                margin-right: 0;
-                margin-bottom: 0.5rem;
-            }
-
-            .education-content {
-                text-align: center;
-            }
-
-            .skills-grid {
-                gap: 1.5rem;
-            }
-
-            .skill-circle {
-                width: 110px;
-                height: 110px;
-            }
-
-            .skill-circle::before {
-                width: 85px;
-                height: 85px;
-            }
-
-            .skill-percentage {
-                font-size: 1.3rem;
-            }
-
-            .portfolio-item:hover {
-                transform: none;
-            }
-
-            .portfolio-img {
-                height: 130px;
-                font-size: 0.8rem;
-                padding: 0.6rem;
-            }
-
-            .portfolio-content {
-                padding: 1rem;
-            }
-
-            .portfolio-content h3 {
-                font-size: 1rem;
-            }
-
-            .portfolio-content p {
-                font-size: 0.8rem;
-            }
-
-            .contact-form input,
-            .contact-form textarea {
-                padding: 0.9rem;
-                font-size: 0.9rem;
-            }
-
-            .submit-btn {
-                padding: 0.9rem 1.8rem;
-                font-size: 0.9rem;
-                width: 100%;
-                text-align: center;
-            }
-
-            .contact-item {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.8rem;
-            }
-
-            .contact-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
-                margin: 0 auto;
-            }
-
-            .contact-details {
-                text-align: center;
-            }
-
-            .contact-details p {
-                word-break: break-word;
-            }
-
-            .info-item {
-                text-align: center;
-                gap: 0.2rem;
-            }
-
-            .info-label {
-                font-weight: 600;
-                color: #d4af37;
-            }
-
-            footer {
-                padding: 1.5rem 0;
-            }
-
-            footer p {
-                font-size: 0.8rem;
-                padding: 0 1rem;
-                line-height: 1.4;
-            }
-
-            header {
-                padding: 0.8rem 0;
-            }
-
-            main {
-                margin-top: 60px;
-            }
-
-            section {
-                scroll-margin-top: 75px;
-            }
-
-            nav {
-                padding: 0 0.8rem;
-            }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #d4af37;
+            border: 3px solid white;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 15px;
+            width: 1px;
+            height: calc(100% - 15px);
+            background: white;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadein {
+            animation: fadeIn 0.6s ease-out forwards;
         }
     </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">Ilya</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+<body class="bg-navy-dark text-white font-sans">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-navy-darker z-50 border-b border-white">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold text-white flex items-center">
+                    <span class="text-gold mr-2">✦</span>Ilya<span class="text-gold">✦</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#home" class="text-white hover:text-gold transition-colors duration-300 font-medium">Beranda</a></li>
+                    <li><a href="#about" class="text-white hover:text-gold transition-colors duration-300 font-medium">Tentang</a></li>
+                    <li><a href="#portfolio" class="text-white hover:text-gold transition-colors duration-300 font-medium">Portfolio</a></li>
+                    <li><a href="#contact" class="text-white hover:text-gold transition-colors duration-300 font-medium">Kontak</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-xl p-2 hover:text-gold transition-colors" onclick="toggleMobileMenu()">
+                    ☰
+                </button>
+            </div>
+                    
+            <!-- Mobile Navigation -->
+            <div class="nav-mobile md:hidden absolute top-full left-0 right-0 bg-navy-darker shadow-lg border-t border-white">
+                <ul class="py-2">
+                    <li><a href="#home" class="block py-3 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium">Beranda</a></li>
+                    <li><a href="#about" class="block py-3 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium">Tentang</a></li>
+                    <li><a href="#portfolio" class="block py-3 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium">Portfolio</a></li>
+                    <li><a href="#contact" class="block py-3 px-6 hover:bg-navy-dark hover:text-gold transition-all font-medium">Kontak</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
-    <main>
+    <main class="pt-20">
         <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="profile-img">
-                    <div class="profile-img-placeholder">👨‍💼</div>
+        <section id="home" class="bg-navy-dark py-20">
+            <div class="container mx-auto px-6 text-center">
+                <!-- Profile Image -->
+                <img src="img/saya.jpg" alt="Profile Photo" class="profile-image mx-auto mb-8 animate-fadein">
+                
+                <!-- Hero Text -->
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white animate-fadein" style="animation-delay: 0.2s">
+                    Halo, Saya <span class="text-gold">Muhammad Ilya Hamzah</span>
+                </h1>
+                <p class="text-lg text-text-gray max-w-3xl mx-auto leading-relaxed animate-fadein" style="animation-delay: 0.4s">
+                    Seorang Backend Developer dengan spesialisasi dalam pengembangan sistem server yang kuat dan efisien. Saya berkomitmen untuk menciptakan arsitektur backend yang skalabel, aman, dan berkinerja tinggi untuk mendukung aplikasi modern.
+                </p>
+                
+                <div class="mt-10 animate-fadein" style="animation-delay: 0.6s">
+                    <a href="#contact" class="inline-block px-8 py-3 bg-gold text-navy-darker font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300 mr-4">
+                        Hubungi Saya
+                    </a>
+                    <a href="#portfolio" class="inline-block px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300">
+                        Lihat Portfolio
+                    </a>
                 </div>
-                <h1>Hello Saya Ilya</h1>
-                <p>Saya adalah pengembang web backend yang berfokus pada performa, keamanan, dan skalabilitas, serta memastikan sistem server dan basis data berjalan optimal untuk mendukung aplikasi modern.</p>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <h2 class="section-title">ABOUT ME</h2>
-                <div class="about-content">
-                    <div class="about-left">
-                        <h3>EDUCATION</h3>
-                        <div class="education-item">
-                            <div class="education-icon">🎓</div>
-                            <div class="education-content">
-                                <h4>Les Private Al Hafidz</h4>
-                                <p>2012 - 2014</p>
+        <section id="about" class="bg-navy-darker py-20">
+            <div class="container mx-auto px-6">
+                <!-- Section Title -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                        <span class="text-gold">//</span> Tentang Saya <span class="text-gold">//</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gold mx-auto"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Education -->
+                    <div>
+                        <h3 class="text-2xl mb-8 text-white text-center lg:text-left flex items-center">
+                            <span class="w-8 h-1 bg-gold mr-4 hidden lg:block"></span>
+                            Riwayat Pendidikan
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="timeline-item">
+                                <div class="bg-navy-card p-6 rounded-lg border-l-4 border-gold">
+                                    <h4 class="font-bold mb-1 text-white text-lg">Les Private Al Hafidz</h4>
+                                    <p class="text-text-gray text-sm mb-2">2012 - 2014</p>
+                                    <p class="text-text-gray text-sm leading-relaxed">
+                                        Pendidikan dasar agama dan tahfidz Quran yang membentuk dasar karakter dan disiplin saya.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-icon">🎓</div>
-                            <div class="education-content">
-                                <h4>SDN Sindang Sari 1</h4>
-                                <p>2014 - 2020</p>
+                                                        
+                            <div class="timeline-item">
+                                <div class="bg-navy-card p-6 rounded-lg border-l-4 border-gold">
+                                    <h4 class="font-bold mb-1 text-white text-lg">SDN Sindang Sari 1</h4>
+                                    <p class="text-text-gray text-sm mb-2">2014 - 2020</p>
+                                    <p class="text-text-gray text-sm leading-relaxed">
+                                        Pendidikan dasar formal dimana saya mulai tertarik dengan teknologi dan komputer.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-icon">🎓</div>
-                            <div class="education-content">
-                                <h4>SMP Amaliah</h4>
-                                <p>2020 - 2023</p>
+                                                        
+                            <div class="timeline-item">
+                                <div class="bg-navy-card p-6 rounded-lg border-l-4 border-gold">
+                                    <h4 class="font-bold mb-1 text-white text-lg">SMP Amaliah</h4>
+                                    <p class="text-text-gray text-sm mb-2">2020 - 2023</p>
+                                    <p class="text-text-gray text-sm leading-relaxed">
+                                        Masa dimana saya mulai serius mempelajari pemrograman dasar dan logika komputer.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-icon">🎓</div>
-                            <div class="education-content">
-                                <h4>SMK Amaliah 1</h4>
-                                <p>2023 - Sekarang</p>
+                                                        
+                            <div class="timeline-item">
+                                <div class="bg-navy-card p-6 rounded-lg border-l-4 border-gold">
+                                    <h4 class="font-bold mb-1 text-white text-lg">SMK Amaliah 1</h4>
+                                    <p class="text-text-gray text-sm mb-2">2023 - Sekarang</p>
+                                    <p class="text-text-gray text-sm leading-relaxed">
+                                        Fokus pada pengembangan kompetensi di bidang Rekayasa Perangkat Lunak dengan spesialisasi backend development.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="about-right">
-                        <h3>Haii, Saya Muhammad Ilya Hamzah</h3>
-                        <h4>Backend Developer</h4>
-                        <p class="about-text">Saya adalah seorang Backend Developer dengan fokus pada pengembangan sistem dan integrasi server. Backend bertujuan membangun struktur yang stabil, aman, dan efisien untuk mendukung kinerja aplikasi dan pengalaman pengguna yang optimal.</p>
+                                        
+                    <!-- Personal Info -->
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-2xl md:text-3xl mb-4 text-white">
+                            Profesional <span class="text-gold">Backend Developer</span>
+                        </h3>
+                        <p class="text-text-gray mb-8 leading-relaxed">
+                            Dengan pengalaman dalam membangun sistem backend yang robust, saya memiliki keahlian dalam:
+                        </p>
                         
-                        <div class="personal-info">
-                            <div class="info-item">
-                                <span class="info-label">Tanggal Lahir</span>
-                                <span class="info-value">12 Maret 2008</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Alamat</span>
-                                <span class="info-value">Jl. Raya Tajur Kp. Palasari RT 06 RW 05</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Telepon</span>
-                                <span class="info-value">+62 812 1139 1835</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Email</span>
-                                <span class="info-value">muhammadilyahamzah@gmail.com</span>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <span class="text-gold mr-2 mt-1">✓</span>
+                                <span class="text-white">Membangun API RESTful yang efisien dan terdokumentasi dengan baik</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-gold mr-2 mt-1">✓</span>
+                                <span class="text-white">Optimasi performa database dan query</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-gold mr-2 mt-1">✓</span>
+                                <span class="text-white">Implementasi sistem autentikasi dan otorisasi yang aman</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-gold mr-2 mt-1">✓</span>
+                                <span class="text-white">Integrasi dengan berbagai layanan third-party</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-gold mr-2 mt-1">✓</span>
+                                <span class="text-white">Pengembangan sistem sesuai dengan best practices dan standar keamanan</span>
+                            </li>
+                        </ul>
+                                                
+                        <!-- Personal Details -->
+                        <div class="bg-navy-card p-6 rounded-lg">
+                            <h4 class="text-xl font-bold mb-4 text-gold">Informasi Pribadi</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-text-gray font-medium">Tanggal Lahir:</div>
+                                    <div class="text-white">12 Maret 2008</div>
+                                </div>
+                                <div>
+                                    <div class="text-text-gray font-medium">Alamat:</div>
+                                    <div class="text-white">Jl. Raya Tajur Kp. Palasari RT 06 RW 05</div>
+                                </div>
+                                <div>
+                                    <div class="text-text-gray font-medium">Telepon:</div>
+                                    <div class="text-white">+62 812 1139 1835</div>
+                                </div>
+                                <div>
+                                    <div class="text-text-gray font-medium">Email:</div>
+                                    <div class="text-white break-all">muhammadilyahamzah@gmail.com</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1343,83 +317,265 @@
         </section>
 
         <!-- Skills Section -->
-        <section class="skills">
-            <div class="container">
-                <h2 class="section-title">MY SKILLS</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-circle" style="--progress: 234deg;">
-                            <div class="skill-percentage">65%</div>
-                        </div>
-                        <div class="skill-name">HTML</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-circle" style="--progress: 108deg;">
-                            <div class="skill-percentage">30%</div>
-                        </div>
-                        <div class="skill-name">PHP</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-circle" style="--progress: 144deg;">
-                            <div class="skill-percentage">40%</div>
-                        </div>
-                        <div class="skill-name">LARAVEL</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-circle" style="--progress: 126deg;">
-                            <div class="skill-percentage">35%</div>
-                        </div>
-                        <div class="skill-name">UI/UX DESIGN</div>
-                    </div>
-                </div>
+        <section class="bg-gradient-to-b from-gray-900 to-gray-800 py-20">
+        <div class="container mx-auto px-6">
+            <!-- Section Title -->
+            <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white tracking-wide">
+                <span class="text-gold">//</span> Keahlian Saya <span class="text-gold">//</span>
+            </h2>
+            <div class="w-24 h-1 bg-gold mx-auto rounded-full"></div>
+            <p class="text-gray-300 max-w-2xl mx-auto mt-4 text-lg">
+                Berikut adalah teknologi dan keahlian yang saya kuasai beserta tingkat kemahiran saya
+            </p>
             </div>
-        </section>
 
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Skill Card -->
+            <div class="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition transform">
+                <div class="relative mx-auto w-28 h-28 mb-4">
+                <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                    <circle cx="56" cy="56" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none" />
+                    <circle cx="56" cy="56" r="50" stroke="url(#gradGold)" stroke-width="10" fill="none"
+                    stroke-dasharray="314" stroke-dashoffset="110"
+                    stroke-linecap="round" />
+                    <defs>
+                    <linearGradient id="gradGold" x1="0" x2="1" y1="0" y2="1">
+                        <stop stop-color="#fbbf24" />
+                        <stop stop-color="#f59e0b" offset="1" />
+                    </linearGradient>
+                    </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-2xl">65%</div>
+                </div>
+                <h3 class="text-lg font-bold text-white">HTML5</h3>
+                <p class="text-gold font-semibold">Intermediate</p>
+            </div>
+
+            <!-- Skill Card -->
+            <div class="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition transform">
+                <div class="relative mx-auto w-28 h-28 mb-4">
+                <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                    <circle cx="56" cy="56" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none" />
+                    <circle cx="56" cy="56" r="50" stroke="url(#gradGold)" stroke-width="10" fill="none"
+                    stroke-dasharray="314" stroke-dashoffset="220"
+                    stroke-linecap="round" />
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-2xl">30%</div>
+                </div>
+                <h3 class="text-lg font-bold text-white">PHP</h3>
+                <p class="text-gold font-semibold">Basic</p>
+            </div>
+
+            <!-- Skill Card -->
+            <div class="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition transform">
+                <div class="relative mx-auto w-28 h-28 mb-4">
+                <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                    <circle cx="56" cy="56" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none" />
+                    <circle cx="56" cy="56" r="50" stroke="url(#gradGold)" stroke-width="10" fill="none"
+                    stroke-dasharray="314" stroke-dashoffset="188"
+                    stroke-linecap="round" />
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-2xl">40%</div>
+                </div>
+                <h3 class="text-lg font-bold text-white">Laravel</h3>
+                <p class="text-gold font-semibold">Basic+</p>
+            </div>
+
+            <!-- Skill Card -->
+            <div class="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition transform">
+                <div class="relative mx-auto w-28 h-28 mb-4">
+                <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                    <circle cx="56" cy="56" r="50" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none" />
+                    <circle cx="56" cy="56" r="50" stroke="url(#gradGold)" stroke-width="10" fill="none"
+                    stroke-dasharray="314" stroke-dashoffset="204"
+                    stroke-linecap="round" />
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-2xl">35%</div>
+                </div>
+                <h3 class="text-lg font-bold text-white">UI/UX</h3>
+                <p class="text-gold font-semibold">Basic</p>
+            </div>
+            </div>
+        </div>
+        </section>
+        
         <!-- Portfolio Section -->
-        <section id="portfolio" class="portfolio">
-            <div class="container">
-                <h2 class="section-title">PORTFOLIO</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img">Aplikasi Inventaris Sekolah</div>
-                        <div class="portfolio-content">
-                            <h3>Aplikasi Inventaris Sekolah</h3>
-                            <p>Sistem manajemen inventaris sekolah yang memudahkan pencatatan dan pengelolaan barang sekolah secara digital.</p>
+        <section id="portfolio" class="bg-navy-darker py-20">
+            <div class="container mx-auto px-6">
+                <!-- Section Title -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                        <span class="text-gold">//</span> Project Portfolio <span class="text-gold">//</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gold mx-auto"></div>
+                    <p class="text-text-gray max-w-2xl mx-auto mt-4">
+                        Beberapa project yang telah saya selesaikan selama perjalanan pengembangan karir saya
+                    </p>
+                </div>
+                
+                <!-- Portfolio Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Portfolio Item 1 -->
+                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                        <div class="overflow-hidden">
+                            <img src="img/inventaris.png" alt="Aplikasi Inventaris Sekolah" class="portfolio-image">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">Aplikasi Inventaris Sekolah</h3>
+                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                                Sistem manajemen inventaris sekolah berbasis web dengan fitur:
+                            </p>
+                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Pencatatan barang masuk/keluar</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Pelacakan lokasi barang</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Laporan otomatis</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-img">Search Engine & CRUD</div>
-                        <div class="portfolio-content">
-                            <h3>Search Engine & CRUD</h3>
-                            <p>Aplikasi pencarian data dengan fitur CRUD lengkap untuk manajemen database yang efisien.</p>
+                                        
+                    <!-- Portfolio Item 2 -->
+                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                        <div class="overflow-hidden">
+                            <img src="img/crud.png" alt="Search Engine & CRUD" class="portfolio-image">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">Search Engine & CRUD</h3>
+                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                                Sistem pencarian data dengan operasi CRUD lengkap:
+                            </p>
+                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Pencarian real-time</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Pagination data</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Validasi input</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-img">Login Multi User</div>
-                        <div class="portfolio-content">
-                            <h3>Login Multi User</h3>
-                            <p>Sistem autentikasi dengan multiple user roles dan permission management yang aman.</p>
+                                        
+                    <!-- Portfolio Item 3 -->
+                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                        <div class="overflow-hidden">
+                            <img src="img/login.png" alt="Login Multi User" class="portfolio-image">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">Login Multi User</h3>
+                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                                Sistem autentikasi dengan berbagai level akses:
+                            </p>
+                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>3 level user (Admin, Guru, Siswa)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Password hashing</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Session management</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-img">Law Firm Website</div>
-                        <div class="portfolio-content">
-                            <h3>Professional Law Website</h3>
-                            <p>Website profesional untuk firma hukum dengan design elegant dan fitur konsultasi online.</p>
+                                        
+                    <!-- Portfolio Item 4 -->
+                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                        <div class="overflow-hidden">
+                            <img src="img/hukum.png" alt="Design Web Kantor Hukum" class="portfolio-image">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">Design Web Kantor Hukum</h3>
+                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                                Desain website profesional untuk firma hukum:
+                            </p>
+                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>UI/UX modern</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Form konsultasi online</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Responsive design</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-img">Calculator App</div>
-                        <div class="portfolio-content">
-                            <h3>Interactive Calculator</h3>
-                            <p>Aplikasi kalkulator interaktif dengan UI modern dan fungsi matematika lengkap.</p>
+                                        
+                    <!-- Portfolio Item 5 -->
+                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                        <div class="overflow-hidden">
+                            <img src="img/kalkulator.png" alt="Kalkulator" class="portfolio-image">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">Kalkulator Interaktif</h3>
+                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                                Aplikasi kalkulator dengan berbagai fitur:
+                            </p>
+                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Operasi matematika dasar</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Memory function</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Animasi interaktif</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-img">Construction Website</div>
-                        <div class="portfolio-content">
-                            <h3>Construction Company Site</h3>
-                            <p>Website perusahaan konstruksi dengan portfolio project dan sistem konsultasi gratis.</p>
+                                        
+                    <!-- Portfolio Item 6 -->
+                    <div class="portfolio-card rounded-xl overflow-hidden border border-white hover-lift transition-all duration-300">
+                        <div class="overflow-hidden">
+                            <img src="img/kontraktor.png" alt="Design Web Kontraktor" class="portfolio-image">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">Design Web Kontraktor</h3>
+                            <p class="text-text-gray text-sm leading-relaxed mb-4">
+                                Desain website perusahaan konstruksi:
+                            </p>
+                            <ul class="text-text-gray text-sm space-y-2 mb-4">
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Portfolio project</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Gallery foto pekerjaan</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gold mr-2">•</span>
+                                    <span>Konsultasi Gratis</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -1427,37 +583,126 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2 class="section-title">Contact Me</h2>
-                <div class="contact-content">
-                    <form class="contact-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea rows="6" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="submit-btn">Submit</button>
-                    </form>
-                    <div class="contact-info">
-                        <h3>Contact Info</h3>
-                        <div class="contact-item">
-                            <div class="contact-icon">✉</div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <p>muhammadilyahamzah@gmail.com</p>
+        <section id="contact" class="bg-navy-dark py-20">
+            <div class="container mx-auto px-6">
+                <!-- Section Title -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                        <span class="text-gold">//</span> Hubungi Saya <span class="text-gold">//</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gold mx-auto"></div>
+                    <p class="text-text-gray max-w-2xl mx-auto mt-4">
+                        Tertarik bekerja sama atau memiliki pertanyaan? Silakan hubungi saya melalui form berikut
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Contact Form -->
+                    <div>
+                        <form class="space-y-6" onsubmit="handleSubmit(event)">
+                            <div>
+                                <label for="name" class="block text-text-gray mb-2">Nama Lengkap</label>
+                                <input 
+                                    type="text"
+                                    id="name"
+                                    placeholder="Masukkan nama Anda"
+                                    required
+                                    class="w-full p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray focus:border-gold focus:outline-none transition-all"
+                                >
+                            </div>
+                            <div>
+                                <label for="email" class="block text-text-gray mb-2">Alamat Email</label>
+                                <input 
+                                    type="email"
+                                    id="email"
+                                    placeholder="Masukkan email Anda"
+                                    required
+                                    class="w-full p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray focus:border-gold focus:outline-none transition-all"
+                                >
+                            </div>
+                            <div>
+                                <label for="message" class="block text-text-gray mb-2">Pesan</label>
+                                <textarea 
+                                    id="message"
+                                    rows="6"
+                                    placeholder="Tulis pesan Anda disini..."
+                                    required
+                                    class="w-full p-4 bg-navy-card border-2 border-white rounded-lg text-white placeholder-text-gray resize-none focus:border-gold focus:outline-none transition-all"
+                                ></textarea>
+                            </div>
+                            <button 
+                                type="submit"
+                                class="px-8 py-3 bg-gold text-navy-darker font-bold rounded-lg hover:bg-white hover:text-navy-dark transition-all duration-300 transform hover:scale-105"
+                            >
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                                        
+                    <!-- Contact Info -->
+                    <div>
+                        <h3 class="text-2xl mb-8 text-white text-center lg:text-left">
+                            Informasi Kontak
+                        </h3>
+                        <div class="space-y-6">
+                            <!-- Email -->
+                            <div class="flex items-start gap-4 bg-navy-card p-6 rounded-lg hover-lift transition-all">
+                                <div class="w-14 h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-xl flex-shrink-0">
+                                    ✉
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2 text-white">Email</h4>
+                                    <p class="text-text-gray break-all hover:text-gold transition-colors">
+                                        <a href="mailto:muhammadilyahamzah@gmail.com">muhammadilyahamzah@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                                                        
+                            <!-- Phone -->
+                            <div class="flex items-start gap-4 bg-navy-card p-6 rounded-lg hover-lift transition-all">
+                                <div class="w-14 h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-xl flex-shrink-0">
+                                    📞
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2 text-white">Telepon/WhatsApp</h4>
+                                    <p class="text-text-gray hover:text-gold transition-colors">
+                                        <a href="https://wa.me/6281211391835">+62 812 1139 1835</a>
+                                    </p>
+                                </div>
+                            </div>
+                                                        
+                            <!-- Address -->
+                            <div class="flex items-start gap-4 bg-navy-card p-6 rounded-lg hover-lift transition-all">
+                                <div class="w-14 h-14 bg-navy-dark border-2 border-gold rounded-full flex items-center justify-center text-gold text-xl flex-shrink-0">
+                                    📍
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2 text-white">Alamat</h4>
+                                    <p class="text-text-gray">
+                                        Jl. Raya Tajur Kp. Palasari RT 06 RW 05, Kota Bogor, Jawa Barat
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div class="contact-details">
-                                <h4>Phone</h4>
-                                <p>+62 812 1139 1835</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div class="contact-details">
-                                <h4>Address</h4>
-                                <p>Jl. Raya Tajur Kp. Palasari RT 06 RW 05</p>
+                        
+                        <!-- Social Media -->
+                        <div class="mt-12">
+                            <h4 class="text-xl font-bold mb-6 text-white text-center lg:text-left">
+                                Media Sosial
+                            </h4>
+                            <div class="flex justify-center lg:justify-start space-x-6">
+                                <a href="#" class="w-12 h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
+                                    <span class="text-xl">f</span>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
+                                    <span class="text-xl">in</span>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
+                                    <span class="text-xl">ig</span>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-navy-card border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-gold hover:border-gold hover:text-navy-dark transition-all">
+                                    <span class="text-xl">gh</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -1466,45 +711,56 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>© 2025. Designed by Ilya. All right reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-navy-darker py-8 border-t border-white">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-text-gray mb-4 md:mb-0">
+                    © 2025, Dirancang oleh <span class="text-gold">Ilya</span>. Hak cipta dilindungi.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-text-gray hover:text-gold transition-colors">Kebijakan Privasi</a>
+                    <a href="#" class="text-text-gray hover:text-gold transition-colors">Syarat & Ketentuan</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle function
+        // Mobile menu toggle
         function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('mobile-active');
+            const navMobile = document.querySelector('.nav-mobile');
+            navMobile.classList.toggle('active');
         }
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-mobile a').forEach(link => {
             link.addEventListener('click', () => {
-                const navLinks = document.querySelector('.nav-links');
-                navLinks.classList.remove('mobile-active');
+                const navMobile = document.querySelector('.nav-mobile');
+                navMobile.classList.remove('active');
             });
         });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             const nav = document.querySelector('nav');
-            const navLinks = document.querySelector('.nav-links');
-            if (!nav.contains(e.target) && navLinks.classList.contains('mobile-active')) {
-                navLinks.classList.remove('mobile-active');
+            const navMobile = document.querySelector('.nav-mobile');
+            const menuBtn = document.querySelector('button');
+                    
+            if (!nav.contains(e.target) && !menuBtn.contains(e.target) && navMobile.classList.contains('active')) {
+                navMobile.classList.remove('active');
             }
         });
 
-        // Smooth scrolling for navigation links with offset
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 10; // Reduced to 10px padding
-                    
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                                        
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
@@ -1514,56 +770,71 @@
         });
 
         // Contact form handling
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        function handleSubmit(e) {
             e.preventDefault();
-            alert('Terima kasih! Pesan Anda telah dikirim.');
-            this.reset();
-        });
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Mengirim...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert('Terima kasih! Pesan Anda telah berhasil dikirim. Saya akan menghubungi Anda segera.');
+                e.target.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        }
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(13, 17, 23, 0.98)';
+            const currentScrollY = window.scrollY;
+                    
+            if (currentScrollY > 100) {
+                header.style.backgroundColor = 'rgba(22, 32, 48, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
             } else {
-                header.style.background = '#0d1117';
+                header.style.backgroundColor = '#162030';
+                header.style.backdropFilter = 'none';
+                header.style.boxShadow = 'none';
             }
         });
 
-        // Animate skill circles on scroll
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillCircles = entry.target.querySelectorAll('.skill-circle');
-                    skillCircles.forEach(circle => {
-                        circle.style.animation = 'none';
-                        circle.offsetHeight; // Trigger reflow
-                        circle.style.animation = 'skillAnimation 2s ease-in-out forwards';
-                    });
-                }
+        // Loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.3s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Animate skill circles on scroll
+            const skillCircles = document.querySelectorAll('.skill-circle');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'skillProgress 1.5s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillCircles.forEach(circle => {
+                observer.observe(circle);
             });
-        }, observerOptions);
-
-        const skillsSection = document.querySelector('.skills');
-        if (skillsSection) {
-            observer.observe(skillsSection);
-        }
-
-        // Add CSS animation for skills
+        });
+        
+        // Add animation for skill circles
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes skillAnimation {
-                from {
-                    background: conic-gradient(#d4af37 0deg, #d4af37 0deg, #2d3748 0deg, #2d3748 360deg);
-                }
-                to {
-                    background: conic-gradient(#d4af37 0deg, #d4af37 var(--progress), #2d3748 var(--progress), #2d3748 360deg);
-                }
+            @keyframes skillProgress {
+                from { --progress: 0deg; }
+                to { --progress: attr(data-progress); }
             }
         `;
         document.head.appendChild(style);
